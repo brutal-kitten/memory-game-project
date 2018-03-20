@@ -5,7 +5,7 @@ const cards = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o
 
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
-
+let cardsToCompare = new Array();
 
 /*
  * Display the cards on the page
@@ -58,3 +58,37 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// event listeber for card
+ table.addEventListener("click", function(evt) {
+   cardIsClicked(evt);
+ });
+
+function cardIsClicked(evt) {
+  let cardToDisplay = evt.target;
+  //displaySymbolOfCard();
+  cardToDisplay.classList.add("open", "show");
+  addCardToCompareList(cardToDisplay);
+};
+
+function addCardToCompareList(cardToDisplay){
+    let length = cardsToCompare.push(cardToDisplay);
+    console.log(length);
+    console.log(cardsToCompare);
+    if (length === 2){
+        setTimeout(checkTheMatch(cardsToCompare), 1000);
+    };
+};
+
+function checkTheMatch(cardsToCompare){
+    let firstElement = cardsToCompare[0].firstChild.className;
+    let secondElement = cardsToCompare[1].firstChild.className;
+    if(firstElement === secondElement){
+        cardsToCompare.length = 0;
+      } else {
+               cardsToCompare[0].classList.remove("open", "show");
+               cardsToCompare[1].classList.remove("open", "show");
+               cardsToCompare.length = 0;
+               console.log(cardsToCompare.length);
+    }
+}
