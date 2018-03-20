@@ -22,7 +22,7 @@ function displayCardsOnPage(cards) {
       let liTag = document.createElement('li');
       liTag.classList.add("card");
       let iTag = document.createElement('i');
-      iTag.classList.add("fa", cards[card]);
+      iTag.classList.add("fa", newPositionOfCards[card]);
       liTag.appendChild(iTag);
       bodyDocFrag.appendChild(liTag);
     };
