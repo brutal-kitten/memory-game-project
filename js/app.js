@@ -79,10 +79,10 @@ start.addEventListener("click", function(evt){
 
 function cardIsClicked(evt) {
   let cardToDisplay = evt.target;
-  //if(!(cardToDisplay.classList.contains("show"))) {
+  if(!(cardToDisplay.classList.contains("show"))&&(cardToDisplay.classList.contains("card"))) {
     cardToDisplay.classList.add("open", "show");
     addCardToCompareList(cardToDisplay);
-//  }
+   }
 }
 
 function addCardToCompareList(cardToDisplay){
@@ -90,7 +90,7 @@ function addCardToCompareList(cardToDisplay){
     console.log(length);
     console.log(cardsToCompare);
     if (length === 2) {
-        setTimeout(function () { checkTheMatch(cardsToCompare) }, 1000);
+        checkTheMatch(cardsToCompare);
     }
 }
 
@@ -98,13 +98,21 @@ function checkTheMatch(cardsToCompare){
     let firstElement = cardsToCompare[0].firstChild.className;
     let secondElement = cardsToCompare[1].firstChild.className;
     if(firstElement === secondElement){
-        cardsToCompare.pop().classList.add("match");
-        cardsToCompare.pop().classList.add("match");
-        console.log(cardsToCompare.length);
+        markCardAsMatched(cardsToCompare);
     } else {
-       cardsToCompare[0].classList.remove("open", "show");
-       cardsToCompare[1].classList.remove("open", "show");
-       cardsToCompare.length = 0;
-       console.log(cardsToCompare.length);
+        setTimeout(function(){
+        removeCardsFromList(cardsToCompare)}, 1000);
     }
+}
+
+function markCardAsMatched(cardsToCompare){
+  cardsToCompare.pop().classList.add("match");
+  cardsToCompare.pop().classList.add("match");
+  console.log(cardsToCompare.length);
+}
+
+function removeCardsFromList(cardsToCompare){
+  cardsToCompare.pop().classList.remove("open", "show");
+  cardsToCompare.pop().classList.remove("open", "show");
+  console.log(cardsToCompare.length);
 }
