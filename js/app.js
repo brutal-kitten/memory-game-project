@@ -10,7 +10,11 @@ const cards = [
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
 const start = document.querySelector('.restart');
+const moves = document.querySelector('.moves');
 let cardsToCompare = new Array();
+let startTime;
+let counterOfMoves = 0;
+let counterOfMatches = 0;
 
 /*
  * Display the cards on the page
@@ -67,13 +71,15 @@ function shuffle(array) {
 //event listenet to the restart button
 start.addEventListener("click", function(evt){
     displayCardsOnPage(cards);
-    //restart the counters
+    startTime = turnOnTimer();
+    resetCounterOfMoves();
+    resetCounterOFMatches();
+
 });
 
 
 // event listeber for card
  table.addEventListener("click", function(evt) {
-   // TODO: make cells marked as 'match' non-clickable
    cardIsClicked(evt);
  });
 
@@ -106,13 +112,40 @@ function checkTheMatch(cardsToCompare){
 }
 
 function markCardAsMatched(cardsToCompare){
-  cardsToCompare.pop().classList.add("match");
-  cardsToCompare.pop().classList.add("match");
-  console.log(cardsToCompare.length);
+    cardsToCompare.pop().classList.add("match");
+    cardsToCompare.pop().classList.add("match");
+    console.log(cardsToCompare.length);
 }
 
 function removeCardsFromList(cardsToCompare){
-  cardsToCompare.pop().classList.remove("open", "show");
-  cardsToCompare.pop().classList.remove("open", "show");
-  console.log(cardsToCompare.length);
+    cardsToCompare.pop().classList.remove("open", "show");
+    cardsToCompare.pop().classList.remove("open", "show");
+    console.log(cardsToCompare.length);
+}
+
+function turnOnTimer(){
+    let startingTime = performance.now();
+    return startingTime;
+}
+
+function calculateTime(startTime) {
+    let endingTime = performance.now();
+    let timeOfGame = (endingTime - startTime)/1000;
+    return timeOfGame;
+}
+
+function resetCounterOfMoves() {
+    counterOfMoves = 0;
+}
+
+function resetCounterOFMatches() {
+    counterOfMatches = 0;
+}
+
+function incrementCountertOfmoves(){
+    counterOfMoves += 1;
+}
+
+function updateMoves() {
+    moves.textContent = counterOfMoves;
 }
