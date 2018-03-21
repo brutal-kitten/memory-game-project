@@ -1,7 +1,11 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
+const cards = [
+  "fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o",
+  "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube",
+  "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"
+];
 
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
@@ -61,34 +65,36 @@ function shuffle(array) {
 
 // event listeber for card
  table.addEventListener("click", function(evt) {
+   // TODO: make cells marked as 'match' non-clickable
    cardIsClicked(evt);
  });
 
 function cardIsClicked(evt) {
   let cardToDisplay = evt.target;
-  //displaySymbolOfCard();
   cardToDisplay.classList.add("open", "show");
   addCardToCompareList(cardToDisplay);
-};
+}
 
 function addCardToCompareList(cardToDisplay){
     let length = cardsToCompare.push(cardToDisplay);
     console.log(length);
     console.log(cardsToCompare);
-    if (length === 2){
-        setTimeout(checkTheMatch(cardsToCompare), 1000);
-    };
-};
+    if (length === 2) {
+        setTimeout(function () { checkTheMatch(cardsToCompare) }, 1000);
+    }
+}
 
 function checkTheMatch(cardsToCompare){
     let firstElement = cardsToCompare[0].firstChild.className;
     let secondElement = cardsToCompare[1].firstChild.className;
     if(firstElement === secondElement){
-        cardsToCompare.length = 0;
-      } else {
-               cardsToCompare[0].classList.remove("open", "show");
-               cardsToCompare[1].classList.remove("open", "show");
-               cardsToCompare.length = 0;
-               console.log(cardsToCompare.length);
+        cardsToCompare.pop().classList.add("match");
+        cardsToCompare.pop().classList.add("match");
+        console.log(cardsToCompare.length);
+    } else {
+       cardsToCompare[0].classList.remove("open", "show");
+       cardsToCompare[1].classList.remove("open", "show");
+       cardsToCompare.length = 0;
+       console.log(cardsToCompare.length);
     }
 }
