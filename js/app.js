@@ -93,7 +93,6 @@ function cardIsClicked(evt) {
   if(!(cardToDisplay.classList.contains("show"))&&(cardToDisplay.classList.contains("card"))) {
     cardToDisplay.classList.add("open", "show");
     addCardToCompareList(cardToDisplay);
-    checkTheStars();
    }
 }
 
@@ -104,6 +103,7 @@ function addCardToCompareList(cardToDisplay){
     if (length === 2) {
         incrementCountertOfMoves();
         updateMoves();
+        checkTheStars();
         checkTheMatch(cardsToCompare);
     }
 }
@@ -178,6 +178,7 @@ function checkTheStars(){
 }
 
 function changeTheStars(){
+      console.log(numberOfStars, counterOfMoves);
       let index = numberOfStars - 1;
       stars[index].classList.add("light");
       numberOfStars -= 1;
