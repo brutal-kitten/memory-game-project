@@ -11,12 +11,13 @@ const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
 const start = document.querySelector('.restart');
 const moves = document.querySelector('.moves');
+const stars = document.getElementsByClassName('fa-star');
 const numberOfPairs = 8;
 let cardsToCompare = new Array();
 let startTime;
 let counterOfMoves = 0;
 let counterOfMatches = 0;
-let numberOfStars = 0;
+let numberOfStars = 3;
 
 /*
  * Display the cards on the page
@@ -92,6 +93,7 @@ function cardIsClicked(evt) {
   if(!(cardToDisplay.classList.contains("show"))&&(cardToDisplay.classList.contains("card"))) {
     cardToDisplay.classList.add("open", "show");
     addCardToCompareList(cardToDisplay);
+    checkTheStars();
    }
 }
 
@@ -166,6 +168,20 @@ function updateMoves() {
 function isTheEndOfGame() {
     return (counterOfMatches === numberOfPairs);
 }
+
+function checkTheStars(){
+    if(numberOfStars !== 0){
+        if ((counterOfMoves === 10) || (counterOfMoves === 14) || (counterOfMoves === 19)) {
+            changeTheStars();
+        }
+    }
+}
+
+function changeTheStars(){
+      let index = numberOfStars - 1;
+      stars[index].classList.add("light");
+      numberOfStars -= 1;
+    }
 
 function stopTheGame () {
     let time = calculateTime(startTime);
