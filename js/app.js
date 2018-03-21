@@ -11,10 +11,12 @@ const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
 const start = document.querySelector('.restart');
 const moves = document.querySelector('.moves');
+const numberOfPairs = 8;
 let cardsToCompare = new Array();
 let startTime;
 let counterOfMoves = 0;
 let counterOfMatches = 0;
+let numberOfStars = 0;
 
 /*
  * Display the cards on the page
@@ -73,7 +75,9 @@ start.addEventListener("click", function(evt){
     displayCardsOnPage(cards);
     startTime = turnOnTimer();
     resetCounterOfMoves();
+    updateMoves();
     resetCounterOFMatches();
+
 
 });
 
@@ -96,6 +100,8 @@ function addCardToCompareList(cardToDisplay){
     console.log(length);
     console.log(cardsToCompare);
     if (length === 2) {
+        incrementCountertOfMoves();
+        updateMoves();
         checkTheMatch(cardsToCompare);
     }
 }
@@ -114,7 +120,9 @@ function checkTheMatch(cardsToCompare){
 function markCardAsMatched(cardsToCompare){
     cardsToCompare.pop().classList.add("match");
     cardsToCompare.pop().classList.add("match");
+    incrementCountertOfMatches();
     console.log(cardsToCompare.length);
+    if(isTheEndOfGame()) { stopTheGame(); }
 }
 
 function removeCardsFromList(cardsToCompare){
@@ -131,6 +139,7 @@ function turnOnTimer(){
 function calculateTime(startTime) {
     let endingTime = performance.now();
     let timeOfGame = (endingTime - startTime)/1000;
+    timeOfGame = timeOfGame.toFixed(1);
     return timeOfGame;
 }
 
@@ -142,10 +151,26 @@ function resetCounterOFMatches() {
     counterOfMatches = 0;
 }
 
-function incrementCountertOfmoves(){
+function incrementCountertOfMoves(){
     counterOfMoves += 1;
+}
+
+function incrementCountertOfMatches() {
+    counterOfMatches +=1;
 }
 
 function updateMoves() {
     moves.textContent = counterOfMoves;
+}
+
+function isTheEndOfGame() {
+    return (counterOfMatches === numberOfPairs);
+}
+
+function stopTheGame () {
+    let time = calculateTime(startTime);
+    let message = `Congratulation! You won!\n
+     With ${counterOfMoves} Moves and ${numberOfStars} stars.\n
+     Time of the game: ${time} seconds`;
+    alert(message);
 }
