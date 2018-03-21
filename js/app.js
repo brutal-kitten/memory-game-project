@@ -9,6 +9,7 @@ const cards = [
 
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
+const start = document.querySelector('.restart');
 let cardsToCompare = new Array();
 
 /*
@@ -63,6 +64,13 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+//event listenet to the restart button
+start.addEventListener("click", function(evt){
+    displayCardsOnPage(cards);
+    //restart the counters
+});
+
+
 // event listeber for card
  table.addEventListener("click", function(evt) {
    // TODO: make cells marked as 'match' non-clickable
@@ -71,8 +79,10 @@ function shuffle(array) {
 
 function cardIsClicked(evt) {
   let cardToDisplay = evt.target;
-  cardToDisplay.classList.add("open", "show");
-  addCardToCompareList(cardToDisplay);
+  //if(!(cardToDisplay.classList.contains("show"))) {
+    cardToDisplay.classList.add("open", "show");
+    addCardToCompareList(cardToDisplay);
+//  }
 }
 
 function addCardToCompareList(cardToDisplay){
