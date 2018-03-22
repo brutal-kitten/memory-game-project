@@ -91,9 +91,19 @@ start.addEventListener("click", function(evt){
 function cardIsClicked(evt) {
   let cardToDisplay = evt.target;
   if(!(cardToDisplay.classList.contains("show"))&&(cardToDisplay.classList.contains("card"))) {
+      if(cardsToCompare.length === 2){
+          setTimeout(function() {
+              openCard(cardToDisplay);
+      }, 1000);
+    } else {
+          openCard(cardToDisplay);
+      }
+   }
+}
+
+function openCard(cardToDisplay){
     cardToDisplay.classList.add("open", "show");
     addCardToCompareList(cardToDisplay);
-   }
 }
 
 function addCardToCompareList(cardToDisplay){
@@ -114,8 +124,9 @@ function checkTheMatch(cardsToCompare){
     if(firstElement === secondElement){
         markCardAsMatched(cardsToCompare);
     } else {
-        setTimeout(function(){
-        removeCardsFromList(cardsToCompare)}, 1000);
+        setTimeout(function() {
+          removeCardsFromList(cardsToCompare);
+        }, 1000);
     }
 }
 
