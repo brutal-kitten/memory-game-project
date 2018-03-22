@@ -135,7 +135,11 @@ function markCardAsMatched(cardsToCompare){
     cardsToCompare.pop().classList.add("match");
     incrementCountertOfMatches();
     console.log(cardsToCompare.length);
-    if(isTheEndOfGame()) { stopTheGame(); }
+    if(isTheEndOfGame()) {
+        setTimeout(function(){
+        stopTheGame();
+      }, 500);
+    }
 }
 
 function removeCardsFromList(cardsToCompare){
