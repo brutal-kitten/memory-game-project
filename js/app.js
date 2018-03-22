@@ -12,6 +12,9 @@ const table = document.querySelector('.deck');
 const start = document.querySelector('.restart');
 const moves = document.querySelector('.moves');
 const stars = document.getElementsByClassName('fa-star');
+const modal = document.getElementById('myModal');
+const modalMessage = document.getElementById('modal-message');
+const reStart = document.getElementById('reStart');
 const numberOfPairs = 8;
 let cardsToCompare = new Array();
 let startTime;
@@ -72,14 +75,14 @@ function shuffle(array) {
  */
 
 //event listenet to the restart button
-start.addEventListener("click", function(evt){
-    displayCardsOnPage(cards);
-    startTime = turnOnTimer();
-    resetCounterOfMoves();
-    updateMoves();
-    resetCounterOFMatches();
+start.addEventListener("click", function(evt) {
+    startTheGame();
 
+});
 
+reStart.addEventListener("click", function(evt) {
+    modal.style.display = "none";
+    startTheGame();
 });
 
 
@@ -87,6 +90,15 @@ start.addEventListener("click", function(evt){
  table.addEventListener("click", function(evt) {
    cardIsClicked(evt);
  });
+
+
+ function startTheGame(){
+     displayCardsOnPage(cards);
+     startTime = turnOnTimer();
+     resetCounterOfMoves();
+     updateMoves();
+     resetCounterOFMatches();
+ }
 
 function cardIsClicked(evt) {
   let cardToDisplay = evt.target;
@@ -201,8 +213,8 @@ function changeTheStars(){
 
 function stopTheGame () {
     let time = calculateTime(startTime);
-    let message = `Congratulation! You won!\n
-     With ${counterOfMoves} Moves and ${numberOfStars} stars.\n
-     Time of the game: ${time} seconds`;
-    alert(message);
+    let message = `With ${counterOfMoves} Moves and ${numberOfStars} stars.\n
+    Time of the game: ${time} seconds`;
+    modalMessage.textContent = message;
+    modal.style.display = "block";
 }

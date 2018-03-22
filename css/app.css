@@ -110,3 +110,11 @@ h1 {
 .light {
     color: #20ad95;
 }
+
+/*
+ * Styles for the Modal
+ */
+
+#myModal {
+  display: none;
+}
