@@ -211,7 +211,7 @@ function changeTheStars(){
       numberOfStars -= 1;
     }
 
-function stopTheGame () {
+function stopTheGame() {
     let time = calculateTime(startTime);
     let message = `With ${counterOfMoves} Moves and ${numberOfStars} stars.\n
     Time of the game: ${time} seconds`;
