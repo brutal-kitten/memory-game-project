@@ -1,11 +1,26 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards = [
+/*const cards = [
   "fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o",
   "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube",
   "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"
 ];
+*/
+
+
+const cards = [
+  '<image class="icon" src="img/cards/bird.png" alt="bird">', '<image class="icon" src="img/cards/chicken.png" alt="chicken">',
+  '<image class="icon" src="img/cards/dog.png" alt="dog">', '<image class="icon" src="img/cards/flamingo.png" alt="flamingo">',
+  '<image class="icon"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon" src="img/cards/owl.png" alt="owl">',
+  '<image class="icon" src="img/cards/owl2.png" alt="owl2">', '<image class="icon" src="img/cards/turtle.png" alt="turtle">',
+  '<image class="icon" src="img/cards/bird.png" alt="bird">', '<image class="icon" src="img/cards/chicken.png" alt="chicken">',
+  '<image class="icon" src="img/cards/dog.png" alt="dog">', '<image class="icon" src="img/cards/flamingo.png" alt="flamingo">',
+  '<image class="icon"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon" src="img/cards/owl.png" alt="owl">',
+  '<image class="icon" src="img/cards/owl2.png" alt="owl2">', '<image class="icon" src="img/cards/turtle.png" alt="turtle">',
+];
+
+
 
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
@@ -36,9 +51,9 @@ function displayCardsOnPage(cards) {
     for (const card in newPositionOfCards) {
       let liTag = document.createElement('li');
       liTag.classList.add("card");
-      let iTag = document.createElement('i');
-      iTag.classList.add("fa", newPositionOfCards[card]);
-      liTag.appendChild(iTag);
+      //let iTag = document.createElement('image');
+      liTag.insertAdjacentHTML('beforeend', newPositionOfCards[card]);
+      //liTag.appendChild(iTag);
       bodyDocFrag.appendChild(liTag);
     };
     //add each card's HTML to the page

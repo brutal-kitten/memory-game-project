@@ -111,6 +111,12 @@ h1 {
     color: #20ad95;
 }
 
+
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
 /*
  * Styles for the Modal
  */
