@@ -10,14 +10,14 @@
 
 
 const cards = [
-  '<image class="icon hide" src="img/cards/bird.png" alt="bird">', '<image class="icon hide" src="img/cards/chicken.png" alt="chicken">',
-  '<image class="icon hide" src="img/cards/dog.png" alt="dog">', '<image class="icon hide" src="img/cards/flamingo.png" alt="flamingo">',
-  '<image class="icon hide"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon hide" src="img/cards/owl.png" alt="owl">',
-  '<image class="icon hide" src="img/cards/owl2.png" alt="owl2">', '<image class="icon hide" src="img/cards/turtle.png" alt="turtle">',
-  '<image class="icon hide" src="img/cards/bird.png" alt="bird">', '<image class="icon hide" src="img/cards/chicken.png" alt="chicken">',
-  '<image class="icon hide" src="img/cards/dog.png" alt="dog">', '<image class="icon hide" src="img/cards/flamingo.png" alt="flamingo">',
-  '<image class="icon hide"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon hide" src="img/cards/owl.png" alt="owl">',
-  '<image class="icon hide" src="img/cards/owl2.png" alt="owl2">', '<image class="icon hide" src="img/cards/turtle.png" alt="turtle">',
+  '<image class="icon hide bird" src="img/cards/bird.png" alt="bird">', '<image class="icon hide chicken" src="img/cards/chicken.png" alt="chicken">',
+  '<image class="icon hide dog" src="img/cards/dog.png" alt="dog">', '<image class="icon hide flamingo" src="img/cards/flamingo.png" alt="flamingo">',
+  '<image class="icon hide kitten"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon hide owl" src="img/cards/owl.png" alt="owl">',
+  '<image class="icon hide owl2" src="img/cards/owl2.png" alt="owl2">', '<image class="icon hide turtle" src="img/cards/turtle.png" alt="turtle">',
+  '<image class="icon hide bird" src="img/cards/bird.png" alt="bird">', '<image class="icon hide chicken" src="img/cards/chicken.png" alt="chicken">',
+  '<image class="icon hide dog" src="img/cards/dog.png" alt="dog">', '<image class="icon hide flamingo" src="img/cards/flamingo.png" alt="flamingo">',
+  '<image class="icon hide kitten"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon hide owl" src="img/cards/owl.png" alt="owl">',
+  '<image class="icon hide owl2" src="img/cards/owl2.png" alt="owl2">', '<image class="icon hide turtle" src="img/cards/turtle.png" alt="turtle">',
 ];
 
 
@@ -111,6 +111,7 @@ reStart.addEventListener("click", function(evt) {
      resetCounterOfMoves();
      updateMoves();
      resetCounterOFMatches();
+     resetStars();
  }
 
 function cardIsClicked(evt) {
@@ -128,7 +129,7 @@ function cardIsClicked(evt) {
 
 function openCard(cardToDisplay){
     cardToDisplay.classList.add("open", "show");
-    cardToDisplay.firstChild.classList('')
+    cardToDisplay.firstChild.classList.remove('hide');
     addCardToCompareList(cardToDisplay);
 }
 
@@ -169,8 +170,12 @@ function markCardAsMatched(cardsToCompare){
 }
 
 function removeCardsFromList(cardsToCompare){
-    cardsToCompare.pop().classList.remove("open", "show");
-    cardsToCompare.pop().classList.remove("open", "show");
+    let first = cardsToCompare.pop();
+    first.classList.remove("open", "show");
+    first.firstChild.classList.add("hide");
+    let second = cardsToCompare.pop();
+    second.classList.remove("open", "show");
+    second.firstChild.classList.add("hide");
     console.log(cardsToCompare.length);
 }
 
@@ -210,6 +215,15 @@ function isTheEndOfGame() {
     return (counterOfMatches === numberOfPairs);
 }
 
+function resetStars(){
+    numberOfStars = 3;
+    for (let index = 0; index <3; index++){
+    stars[index].classList.remove("light");
+    //stars[1].classList.remove("light");
+    //stars[2].classList.remove("light");
+  }
+}
+
 function checkTheStars(){
     if(numberOfStars !== 0){
         if ((counterOfMoves === 10) || (counterOfMoves === 14) || (counterOfMoves === 19)) {
@@ -219,7 +233,6 @@ function checkTheStars(){
 }
 
 function changeTheStars(){
-      console.log(numberOfStars, counterOfMoves);
       let index = numberOfStars - 1;
       stars[index].classList.add("light");
       numberOfStars -= 1;
