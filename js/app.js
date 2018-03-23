@@ -10,14 +10,14 @@
 
 
 const cards = [
-  '<image class="icon" src="img/cards/bird.png" alt="bird">', '<image class="icon" src="img/cards/chicken.png" alt="chicken">',
-  '<image class="icon" src="img/cards/dog.png" alt="dog">', '<image class="icon" src="img/cards/flamingo.png" alt="flamingo">',
-  '<image class="icon"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon" src="img/cards/owl.png" alt="owl">',
-  '<image class="icon" src="img/cards/owl2.png" alt="owl2">', '<image class="icon" src="img/cards/turtle.png" alt="turtle">',
-  '<image class="icon" src="img/cards/bird.png" alt="bird">', '<image class="icon" src="img/cards/chicken.png" alt="chicken">',
-  '<image class="icon" src="img/cards/dog.png" alt="dog">', '<image class="icon" src="img/cards/flamingo.png" alt="flamingo">',
-  '<image class="icon"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon" src="img/cards/owl.png" alt="owl">',
-  '<image class="icon" src="img/cards/owl2.png" alt="owl2">', '<image class="icon" src="img/cards/turtle.png" alt="turtle">',
+  '<image class="icon hide" src="img/cards/bird.png" alt="bird">', '<image class="icon hide" src="img/cards/chicken.png" alt="chicken">',
+  '<image class="icon hide" src="img/cards/dog.png" alt="dog">', '<image class="icon hide" src="img/cards/flamingo.png" alt="flamingo">',
+  '<image class="icon hide"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon hide" src="img/cards/owl.png" alt="owl">',
+  '<image class="icon hide" src="img/cards/owl2.png" alt="owl2">', '<image class="icon hide" src="img/cards/turtle.png" alt="turtle">',
+  '<image class="icon hide" src="img/cards/bird.png" alt="bird">', '<image class="icon hide" src="img/cards/chicken.png" alt="chicken">',
+  '<image class="icon hide" src="img/cards/dog.png" alt="dog">', '<image class="icon hide" src="img/cards/flamingo.png" alt="flamingo">',
+  '<image class="icon hide"  src="img/cards/kitten.png" alt="kitten">', '<image class="icon hide" src="img/cards/owl.png" alt="owl">',
+  '<image class="icon hide" src="img/cards/owl2.png" alt="owl2">', '<image class="icon hide" src="img/cards/turtle.png" alt="turtle">',
 ];
 
 
@@ -51,9 +51,7 @@ function displayCardsOnPage(cards) {
     for (const card in newPositionOfCards) {
       let liTag = document.createElement('li');
       liTag.classList.add("card");
-      //let iTag = document.createElement('image');
       liTag.insertAdjacentHTML('beforeend', newPositionOfCards[card]);
-      //liTag.appendChild(iTag);
       bodyDocFrag.appendChild(liTag);
     };
     //add each card's HTML to the page
@@ -130,6 +128,7 @@ function cardIsClicked(evt) {
 
 function openCard(cardToDisplay){
     cardToDisplay.classList.add("open", "show");
+    cardToDisplay.firstChild.classList('')
     addCardToCompareList(cardToDisplay);
 }
 

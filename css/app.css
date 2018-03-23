@@ -71,8 +71,9 @@ h1 {
     cursor: default;
 }
 
-.deck .card.show {
-    font-size: 33px;
+
+.hide {
+    display: none;
 }
 
 .deck .card.match {
@@ -115,6 +116,7 @@ h1 {
 .icon {
   width: 100px;
   height: 100px;
+
 }
 
 /*
