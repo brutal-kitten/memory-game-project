@@ -1,13 +1,6 @@
 /*
- * Create a list that holds all of your cards
+ * Create a list that holds all of cards
  */
-/*const cards = [
-  "fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o",
-  "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube",
-  "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"
-];
-*/
-
 
 const cards = [
   '<image class="icon hide bird" src="img/cards/bird.png" alt="bird">', '<image class="icon hide chicken" src="img/cards/chicken.png" alt="chicken">',
@@ -21,7 +14,6 @@ const cards = [
 ];
 
 
-
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
 const start = document.querySelector('.start');
@@ -31,24 +23,18 @@ const modal = document.getElementById('myModal');
 const modalMessage = document.getElementById('modal-message');
 const reStart = document.getElementById('reStart');
 const playAgain = document.querySelector('.playAgain')
-const numberOfPairs = 8;
+const NUMBER_OF_PAIRS = 8;
 let cardsToCompare = new Array();
 let startTime;
 let counterOfMoves = 0;
 let counterOfMatches = 0;
 let numberOfStars = 3;
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 function displayCardsOnPage(cards) {
     // shuffle the list of cards
     let newPositionOfCards = shuffle(cards);
-    // oop through each card and create its HTML
+    // loop through each card and create its HTML
     for (const card in newPositionOfCards) {
       let liTag = document.createElement('li');
       liTag.classList.add("card");
@@ -59,7 +45,6 @@ function displayCardsOnPage(cards) {
     $(table).empty();
     table.appendChild(bodyDocFrag);
 }
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -88,30 +73,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//event listenet to the restart button
-start.addEventListener("click", function(evt) {
-    startTheGame();
-
-});
-
-reStart.addEventListener("click", function(evt) {
-    modal.style.display = "none";
-    startTheGame();
-});
-
-playAgain.addEventListener("click", function(evt) {
-    startTheGame();
-
-});
-
-
-// event listeber for card
- table.addEventListener("click", function(evt) {
-   cardIsClicked(evt);
- });
-
-
- function startTheGame(){
+ function startTheGame() {
      displayCardsOnPage(cards);
      startTime = turnOnTimer();
      resetCounterOfMoves();
@@ -128,25 +90,24 @@ function isCard(card) {
   return card.classList.contains("card");
 }
 
+//do not allow to open more than two cards
 function cardIsClicked(evt) {
   let card = evt.target;
   if (!isShown(card) && isCard(card)) {
-    if (cardsToCompare.length < 2){
+    if (cardsToCompare.length < 2) {
       openCard(card);
     }
   }
 }
 
-function openCard(cardToDisplay){
+function openCard(cardToDisplay) {
     cardToDisplay.classList.add("open", "show");
     cardToDisplay.firstChild.classList.remove('hide');
     addCardToCompareList(cardToDisplay);
 }
 
-function addCardToCompareList(cardToDisplay){
+function addCardToCompareList(cardToDisplay) {
     let length = cardsToCompare.push(cardToDisplay);
-    console.log(length);
-    console.log(cardsToCompare);
     if (length === 2) {
         incrementCountertOfMoves();
         updateMoves();
@@ -155,10 +116,10 @@ function addCardToCompareList(cardToDisplay){
     }
 }
 
-function checkTheMatch(cardsToCompare){
+function checkTheMatch(cardsToCompare) {
     let firstElement = cardsToCompare[0].firstChild.className;
     let secondElement = cardsToCompare[1].firstChild.className;
-    if(firstElement === secondElement){
+    if(firstElement === secondElement) {
         markCardAsMatched(cardsToCompare);
     } else {
         markCardAsNotMatched(cardsToCompare);
@@ -168,7 +129,7 @@ function checkTheMatch(cardsToCompare){
     }
 }
 
-function markCardAsMatched(cardsToCompare){
+function markCardAsMatched(cardsToCompare) {
     cardsToCompare.pop().classList.add("match");
     cardsToCompare.pop().classList.add("match");
     incrementCountertOfMatches();
@@ -180,7 +141,7 @@ function markCardAsMatched(cardsToCompare){
     }
 }
 
-function removeCardsFromList(cardsToCompare){
+function removeCardsFromList(cardsToCompare) {
     let first = cardsToCompare.pop();
     first.classList.remove("open", "show", "notMatched");
     first.firstChild.classList.add("hide");
@@ -197,7 +158,7 @@ function markCardAsNotMatched(cardsToCompare) {
     second.classList.add("notMatched");
 }
 
-function turnOnTimer(){
+function turnOnTimer() {
     let startingTime = performance.now();
     return startingTime;
 }
@@ -230,13 +191,13 @@ function updateMoves() {
 }
 
 function isTheEndOfGame() {
-    return (counterOfMatches === numberOfPairs);
+    return (counterOfMatches === NUMBER_OF_PAIRS);
 }
 
-function resetStars(){
+function resetStars() {
     numberOfStars = 3;
-    for (let index = 0; index <3; index++){
-    stars[index].classList.remove("light");
+    for (let index = 0; index <3; index++) {
+        stars[index].classList.remove("light");
   }
 }
 
@@ -248,7 +209,7 @@ function checkTheStars(){
     }
 }
 
-function changeTheStars(){
+function changeTheStars() {
       let index = numberOfStars - 1;
       stars[index].classList.add("light");
       numberOfStars -= 1;
@@ -261,3 +222,28 @@ function stopTheGame() {
     modalMessage.textContent = message;
     modal.style.display = "block";
 }
+
+
+
+///event listener to the start button on modal window
+start.addEventListener("click", function(evt) {
+    startTheGame();
+});
+
+//event listener to the restart button on modal window
+reStart.addEventListener("click", function(evt) {
+    modal.style.display = "none";
+    startTheGame();
+});
+
+//event listener to the restart button
+playAgain.addEventListener("click", function(evt) {
+    startTheGame();
+
+});
+
+
+// event listener for deck with card
+ table.addEventListener("click", function(evt) {
+   cardIsClicked(evt);
+ });
