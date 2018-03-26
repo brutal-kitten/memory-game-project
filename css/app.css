@@ -125,6 +125,13 @@ h1 {
 
 #myModal {
   display: none;
+}
+
+#startModal {
+  display: block;
+}
+
+.modal {
   position: fixed;
   z-index: 1;
   top: 0;

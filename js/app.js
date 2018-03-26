@@ -24,12 +24,13 @@ const cards = [
 
 const bodyDocFrag = document.createDocumentFragment();
 const table = document.querySelector('.deck');
-const start = document.querySelector('.restart');
+const start = document.querySelector('.start');
 const moves = document.querySelector('.moves');
 const stars = document.getElementsByClassName('fa-star');
 const modal = document.getElementById('myModal');
 const modalMessage = document.getElementById('modal-message');
 const reStart = document.getElementById('reStart');
+const playAgain = document.querySelector('.playAgain')
 const numberOfPairs = 8;
 let cardsToCompare = new Array();
 let startTime;
@@ -96,6 +97,11 @@ start.addEventListener("click", function(evt) {
 reStart.addEventListener("click", function(evt) {
     modal.style.display = "none";
     startTheGame();
+});
+
+playAgain.addEventListener("click", function(evt) {
+    startTheGame();
+
 });
 
 
