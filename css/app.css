@@ -103,6 +103,7 @@ h1 {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: #20ad95;
 }
 
 .score-panel .stars li {
@@ -115,7 +116,7 @@ h1 {
     cursor: pointer;
 }
 .light {
-    color: #20ad95;
+    color: grey;
 }
 
 
@@ -172,4 +173,8 @@ h1 {
     40% { transform: translate(1px, -1px) rotate(20deg); }
     60% { transform: translate(-1px, 1px) rotate(-20deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
+}
+
+footer {
+  text-align: center;
 }
