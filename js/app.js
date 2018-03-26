@@ -114,17 +114,21 @@ reStart.addEventListener("click", function(evt) {
      resetStars();
  }
 
+function isShown(card) {
+  return card.classList.contains("show")
+}
+
+function isCard(card) {
+  return card.classList.contains("card");
+}
+
 function cardIsClicked(evt) {
-  let cardToDisplay = evt.target;
-  if(!(cardToDisplay.classList.contains("show"))&&(cardToDisplay.classList.contains("card"))) {
-      if(cardsToCompare.length === 2){
-          setTimeout(function() {
-              openCard(cardToDisplay);
-      }, 1000);
-    } else {
-          openCard(cardToDisplay);
-      }
-   }
+  let card = evt.target;
+  if (!isShown(card) && isCard(card)) {
+    if (cardsToCompare.length < 2){
+      openCard(card);
+    }
+  }
 }
 
 function openCard(cardToDisplay){
@@ -219,8 +223,6 @@ function resetStars(){
     numberOfStars = 3;
     for (let index = 0; index <3; index++){
     stars[index].classList.remove("light");
-    //stars[1].classList.remove("light");
-    //stars[2].classList.remove("light");
   }
 }
 
