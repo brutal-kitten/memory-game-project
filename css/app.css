@@ -34,6 +34,10 @@ h1 {
     color: green;
 }
 
+footer {
+  text-align: center;
+}
+
 /*
  * Styles for the deck of cards
  */
@@ -115,15 +119,14 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
 .light {
     color: grey;
 }
 
-
 .icon {
   width: 100px;
   height: 100px;
-
 }
 
 /*
@@ -167,14 +170,10 @@ h1 {
   cursor: pointer;
 }
 
-
+/* Animation */
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     40% { transform: translate(1px, -1px) rotate(20deg); }
     60% { transform: translate(-1px, 1px) rotate(-20deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
-}
-
-footer {
-  text-align: center;
 }

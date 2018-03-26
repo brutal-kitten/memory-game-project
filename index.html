@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Memory Game</title>
-    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -14,7 +15,7 @@
         <header>
             <h1>Memory Game</h1>
         </header>
-
+        <!--Score panel with number of stars, number of moves and replay button-->
         <section class="score-panel">
         	  <ul class="stars">
         		    <li><i class="fa fa-star "></i></li>
@@ -26,10 +27,10 @@
                 <i class="fa fa-repeat"> Restart</i>
             </div>
         </section>
-
+        <!-- Deck with cars  -->
         <ul class="deck">
+            <!-- Modal window that appears right after loading the page-->
             <div id="startModal" class="modal">
-              <!-- Modal content -->
               <div class="modal-content">
                 <h2>Let's play!</h2>
                 <button class="start">Play!</button>
@@ -53,8 +54,8 @@
             <li class="card"></li>
         </ul>
     </div>
+    <!-- Modal window that appears after finifhing game-->
     <div id="myModal" class="modal">
-      <!-- Modal content -->
       <div class="modal-content">
         <h2>Congratulation! You won!</h2>
         <p id="modal-message"></p>
