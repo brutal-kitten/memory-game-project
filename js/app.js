@@ -100,14 +100,17 @@ function cardIsClicked(evt) {
   }
 }
 
+// display the card's symbol
 function openCard(cardToDisplay) {
     cardToDisplay.classList.add("open", "show");
     cardToDisplay.firstChild.classList.remove('hide');
     addCardToCompareList(cardToDisplay);
 }
 
+// add the card to a *list* of "open" cards
 function addCardToCompareList(cardToDisplay) {
     let length = cardsToCompare.push(cardToDisplay);
+    // if the list already has another card, check to see if the two cards match
     if (length === 2) {
         incrementCountertOfMoves();
         updateMoves();
@@ -119,21 +122,24 @@ function addCardToCompareList(cardToDisplay) {
 function checkTheMatch(cardsToCompare) {
     let firstElement = cardsToCompare[0].firstChild.className;
     let secondElement = cardsToCompare[1].firstChild.className;
+
+    // the cards do match, lock the cards in the open position
     if(firstElement === secondElement) {
         markCardAsMatched(cardsToCompare);
+        // if the cards do not match, remove the cards from the list and hide the card's symbol
     } else {
-        markCardAsNotMatched(cardsToCompare);
-        setTimeout(function() {
-          removeCardsFromList(cardsToCompare);
-        }, 1000);
+          markCardAsNotMatched(cardsToCompare);
+          setTimeout(function() {
+              removeCardsFromList(cardsToCompare);
+          }, 1000);
     }
 }
 
+// mark cards as matched, empty the list with cards to compare, check if it is the end of game
 function markCardAsMatched(cardsToCompare) {
     cardsToCompare.pop().classList.add("match");
     cardsToCompare.pop().classList.add("match");
     incrementCountertOfMatches();
-    console.log(cardsToCompare.length);
     if(isTheEndOfGame()) {
         setTimeout(function(){
         stopTheGame();
@@ -148,7 +154,6 @@ function removeCardsFromList(cardsToCompare) {
     let second = cardsToCompare.pop();
     second.classList.remove("open", "show", "notMatched");
     second.firstChild.classList.add("hide");
-    console.log(cardsToCompare.length);
 }
 
 function markCardAsNotMatched(cardsToCompare) {
