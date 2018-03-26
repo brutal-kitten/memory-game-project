@@ -161,6 +161,7 @@ function checkTheMatch(cardsToCompare){
     if(firstElement === secondElement){
         markCardAsMatched(cardsToCompare);
     } else {
+        markCardAsNotMatched(cardsToCompare);
         setTimeout(function() {
           removeCardsFromList(cardsToCompare);
         }, 1000);
@@ -181,12 +182,19 @@ function markCardAsMatched(cardsToCompare){
 
 function removeCardsFromList(cardsToCompare){
     let first = cardsToCompare.pop();
-    first.classList.remove("open", "show");
+    first.classList.remove("open", "show", "notMatched");
     first.firstChild.classList.add("hide");
     let second = cardsToCompare.pop();
-    second.classList.remove("open", "show");
+    second.classList.remove("open", "show", "notMatched");
     second.firstChild.classList.add("hide");
     console.log(cardsToCompare.length);
+}
+
+function markCardAsNotMatched(cardsToCompare) {
+    let first = cardsToCompare[0];
+    let second = cardsToCompare[1];
+    first.classList.add("notMatched");
+    second.classList.add("notMatched");
 }
 
 function turnOnTimer(){
