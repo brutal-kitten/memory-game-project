@@ -38,7 +38,7 @@ function displayCardsOnPage(cards) {
     // shuffle the list of cards
     let newPositionOfCards = shuffle(cards);
     // loop through each card and create its HTML
-    for (const card in newPositionOfCards) {
+    for (let card in newPositionOfCards) {
       let liTag = document.createElement('li');
       liTag.classList.add("card");
       liTag.insertAdjacentHTML('beforeend', newPositionOfCards[card]);
