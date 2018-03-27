@@ -23,12 +23,15 @@ const modal = document.getElementById('myModal');
 const modalMessage = document.getElementById('modal-message');
 const reStart = document.getElementById('reStart');
 const playAgain = document.querySelector('.playAgain')
+const timer = document.querySelector('.timer')
 const NUMBER_OF_PAIRS = 8;
 let cardsToCompare = new Array();
 let startTime;
 let counterOfMoves = 0;
 let counterOfMatches = 0;
 let numberOfStars = 3;
+let interval;
+let timerInterval;
 
 
 function displayCardsOnPage(cards) {
@@ -75,7 +78,7 @@ function shuffle(array) {
 
  function startTheGame() {
      displayCardsOnPage(cards);
-     startTime = turnOnTimer();
+     interval = turnOnTimer();
      resetCounterOfMoves();
      updateMoves();
      resetCounterOFMatches();
@@ -164,14 +167,23 @@ function markCardAsNotMatched(cardsToCompare) {
 }
 
 function turnOnTimer() {
-    let startingTime = performance.now();
-    return startingTime;
+    let startTime = performance.now();
+    interval = setInterval(function () {
+        timeOfGame = calculateTime(startTime);
+        updateTimer(timeOfGame);
+      }, 1000);
+    return interval;
+}
+
+function turnOffTimer(interval) {
+    window.clearInterval(interval);
+    updateTimer(0);
 }
 
 function calculateTime(startTime) {
     let endingTime = performance.now();
     let timeOfGame = (endingTime - startTime)/1000;
-    timeOfGame = timeOfGame.toFixed(1);
+    timeOfGame = timeOfGame.toFixed(0);
     return timeOfGame;
 }
 
@@ -193,6 +205,10 @@ function incrementCountertOfMatches() {
 
 function updateMoves() {
     moves.textContent = counterOfMoves;
+}
+
+function updateTimer(timeOfGame) {
+    timer.textContent = timeOfGame;
 }
 
 function isTheEndOfGame() {
@@ -221,9 +237,9 @@ function changeTheStars() {
     }
 
 function stopTheGame() {
-    let time = calculateTime(startTime);
+    turnOffTimer(interval);
     let message = `With ${counterOfMoves} Moves and ${numberOfStars} stars.\n
-    Time of the game: ${time} seconds`;
+    Time of the game: ${timeOfGame} seconds`;
     modalMessage.textContent = message;
     modal.style.display = "block";
 }
@@ -243,8 +259,8 @@ reStart.addEventListener("click", function(evt) {
 
 //event listener to the restart button
 playAgain.addEventListener("click", function(evt) {
+    turnOffTimer(interval);
     startTheGame();
-
 });
 
 
