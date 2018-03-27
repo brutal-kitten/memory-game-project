@@ -1,20 +1,11 @@
-# Memory Game Project
-
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+#Memory Game Project for Front-End Nanodegree Program @Udacity
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is classic memory game. The player can open only two cards at once. If the cards matched, the pair stays open. The game ends when the player opens every matched pair.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Built with
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+HTML, CSS, JavaScript
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+[How game looks](img/game.png)
