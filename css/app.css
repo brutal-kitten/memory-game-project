@@ -27,6 +27,8 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .box {
@@ -99,8 +101,6 @@ footer {
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
-
 }
 
 /*
@@ -191,9 +191,45 @@ footer {
 }
 
 @media screen and (min-width: 670px) {
-  body {
-    width: 660px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .container {
+      width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .deck {
+      width: 330px;
+      min-height: 340px;
+      padding: 20px;
+    }
+
+    .deck .card {
+      height: 62px;
+      width: 62px;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .container {
+      width: 330px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer {
+      font-size: 10px;
+    }
+
+    h1 {
+      font-size: 18px;
+    }
+
+    .score-panel {
+      font-size: 12px;
+    }
 }
