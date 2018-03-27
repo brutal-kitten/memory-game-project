@@ -27,8 +27,6 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 .box {
@@ -190,15 +188,17 @@ footer {
     90% { transform: translate(1px, 2px) rotate(0deg); }
 }
 
-@media screen and (min-width: 670px) {
-    .container {
+@media screen and (min-width: 660px) {
+
+    body {
       width: 660px;
       margin-left: auto;
       margin-right: auto;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 405px) {
+
     .deck {
       width: 330px;
       min-height: 340px;
@@ -215,7 +215,7 @@ footer {
       height: 60px;
     }
 
-    .container {
+    body {
       width: 330px;
       margin-left: auto;
       margin-right: auto;
@@ -232,4 +232,41 @@ footer {
     .score-panel {
       font-size: 12px;
     }
+}
+
+@media screen and (min-width: 406px) and (max-width: 659px) {
+
+  body {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .deck {
+    width: 400px;
+    min-height: 400px;
+    padding: 20px;
+  }
+
+  .deck .card {
+    height: 82px;
+    width: 82px;
+  }
+
+  .icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .score-panel {
+    font-size: 14px;
+  }
 }
