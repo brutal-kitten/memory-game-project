@@ -22,10 +22,10 @@ const stars = document.getElementsByClassName('fa-star');
 const modal = document.getElementById('myModal');
 const modalMessage = document.getElementById('modal-message');
 const reStart = document.getElementById('reStart');
-const playAgain = document.querySelector('.playAgain')
-const timer = document.querySelector('.timer')
+const playAgain = document.querySelector('.playAgain');
+const timer = document.querySelector('.timer');
 const NUMBER_OF_PAIRS = 8;
-let cardsToCompare = new Array();
+let cardsToCompare = [];
 let startTime;
 let counterOfMoves = 0;
 let counterOfMatches = 0;
@@ -86,7 +86,7 @@ function shuffle(array) {
  }
 
 function isShown(card) {
-  return card.classList.contains("show")
+  return card.classList.contains("show");
 }
 
 function isCard(card) {
@@ -223,8 +223,8 @@ function resetStars() {
 }
 
 function checkTheStars(){
-    if(numberOfStars !== 0){
-        if ((counterOfMoves === 10) || (counterOfMoves === 14) || (counterOfMoves === 19)) {
+    if(numberOfStars > 1) {
+        if ((counterOfMoves === 14) || (counterOfMoves === 19)) {
             changeTheStars();
         }
     }
